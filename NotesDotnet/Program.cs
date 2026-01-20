@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Configuration;
 using NotesDotnet.Models;
 using NotesDotnet.Services;
 
@@ -26,6 +27,10 @@ if (app.Environment.IsDevelopment())
 {
     app.UseCors(item => item.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 }
+
+app.UseCors(item =>
+    item.WithOrigins(builder.Configuration["ClientUrl"]).AllowAnyHeader().AllowAnyMethod()
+);
 
 app.UseHttpsRedirection();
 app.UseSwaggerUI(item => item.SwaggerEndpoint("/openapi/v1.json", "Swagger DEMO"));

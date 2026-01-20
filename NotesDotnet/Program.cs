@@ -19,10 +19,11 @@ builder.Services.AddSingleton<INoteService, NoteService>();
 
 var app = builder.Build();
 
+app.MapOpenApi();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
     app.UseCors(item => item.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 }
 
